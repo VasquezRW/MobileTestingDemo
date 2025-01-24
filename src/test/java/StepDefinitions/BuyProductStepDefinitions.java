@@ -1,7 +1,7 @@
 package StepDefinitions;
 
 import Questions.BuyCompletedQuestion;
-import Tasks.BuyBackpackTasks;
+import Tasks.BuyProductTasks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,25 +11,25 @@ import net.serenitybdd.screenplay.GivenWhenThen;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
-public class BuyBackpackStepDefinitions {
+public class BuyProductStepDefinitions {
     //steps definitions
     @Given("el usuario carga el archivo de datos {string}")
     public void elUsuarioCargaElArchivoDeDatos(String string) {
         theActorInTheSpotlight().attemptsTo(
-                BuyBackpackTasks.loadFile(string)
+                BuyProductTasks.loadFile(string)
         );
     }
     @When("el usuario agrega un producto a su carrito")
     public void elUsuarioAgregaUnaMochilaASuCarrito() {
         theActorInTheSpotlight().attemptsTo(
-                BuyBackpackTasks.addBackpackToCart()
+                BuyProductTasks.addBackpackToCart()
         );
     }
 
     @And("el usuario realiza la compra llenando el formulario")
     public void elUsuarioRealizaLaCompraLlenandoElFormulario() {
         theActorInTheSpotlight().attemptsTo(
-                BuyBackpackTasks.finishPurchase()
+                BuyProductTasks.finishPurchase()
         );
     }
 

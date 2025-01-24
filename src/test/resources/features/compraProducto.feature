@@ -1,6 +1,6 @@
-Feature: Compra Mochila
+Feature: Compra primer producto de la tienda
 
-  Scenario: Compra de mochila en sauceLabsApp
+  Scenario: Compra de un producto en sauceLabsApp
     #por defecto se ejecuta la aplicacion al inicio por lo que no se requiere un paso para abrir la aplicacion
     Given el usuario carga el archivo de datos "/src/test/resources/datos.json"
     When el usuario agrega un producto a su carrito

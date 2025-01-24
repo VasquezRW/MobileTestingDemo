@@ -15,8 +15,8 @@ import java.time.Duration;
 
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
-public class BuyBackpackTasks {
-    private static final Logger LOGGER = LoggerFactory.getLogger(BuyBackpackTasks.class);
+public class BuyProductTasks {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BuyProductTasks.class);
     public static Performable loadFile(String path) {
         return Task.where(
                 "{0} carga el archivo de datos " + path,
