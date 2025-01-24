@@ -1,0 +1,14 @@
+{
+  "User": "visual@example.com",
+  "Password": "10203040",
+  "FullName": "Rebecca Winter",
+  "AddressLine1": "Mandorley 123",
+  "AddressLine2": "Entrance 1",
+  "City": "New York",
+  "State": "NY",
+  "ZipCode": "10001",
+  "Country": "United States",
+  "CardNumber": "1234567890123456",
+  "CardExpiration": "12/26",
+  "CardCVV": "123"
+}
