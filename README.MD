@@ -8,6 +8,9 @@ Asegúrese de tener instalados los siguientes componentes:
 - Java (JDK) 21.0.2
 - Gradle 8.12
 - Node.js 22.12.0
+  - La version de Node.js deben ser las siguientes para evitar problemas de instalacion de appium 
+  - ^14.17.0 || ^16.13.0 || >=18.0.0
+  - LTS es recomendada
 - Appium 2.15
 - Android Studio 2024.1.1 (Koala)
 
@@ -30,7 +33,7 @@ Asegúrese de tener instalados los siguientes componentes:
 1. **Ejecutar Emulador**
 
    Abra Android Studio y ejecute un emulador de Android desde el AVD Manager con la version de Android 15 (API 35).
-![alt text](image-5.png)
+   ![alt text](image-5.png)
 
 2. **Iniciar Appium**
 
