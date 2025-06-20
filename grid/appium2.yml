@@ -1,0 +1,7 @@
+# appium2.yml
+server:
+  port: 4733
+  use-drivers:
+    - uiautomator2
+  default-capabilities:
+    systemPort: 8201

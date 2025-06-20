@@ -4,7 +4,7 @@ import io.appium.java_client.AppiumBy;
 import net.serenitybdd.screenplay.targets.Target;
 
 public class SauceLabsPage {
-    public static Target ObjectToBuy = Target.the("Object to Buy").located(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.saucelabs.mydemoapp.android:id/productIV\").instance(0)"));
+    public static Target ObjectToBuy = Target.the("Object to Buy").located(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.saucelabs.mydemoapp.android:id/productIV\").instance(0);"));
     public static Target AddToCartButton = Target.the("Add to Cart").located(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartBt"));
     public static Target CartButton = Target.the("Cart").located(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartIV"));
     public static Target CheckoutButton = Target.the("Checkout").located(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartBt"));

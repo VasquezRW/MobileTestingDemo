@@ -1,5 +1,7 @@
 package Tasks;
 
+import General.AndroidDriver;
+import io.appium.java_client.AppiumBy;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;

@@ -6,6 +6,18 @@ plugins {
 defaultTasks 'clean', 'test', 'aggregate'
 test {
     testLogging.showStandardStreams true
+    maxParallelForks = 2
+    systemProperties System.getProperties()
+}
+//task parallelTests(type: Test) {
+tasks.register('parallelTests', Test) {
+//    useJUnitPlatform()
+//    systemProperty("cucumber.junit-platform.naming-strategy", "long")
+    testLogging.showStandardStreams true
+    include '**/Android1Test.class'
+    include '**/Android2Test.class'
+    maxParallelForks = 2
+    systemProperties System.getProperties()
 }
 group = 'org.example'
 version = '1.0-SNAPSHOT'
@@ -24,6 +36,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testImplementation 'junit:junit:4.13.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
     implementation "net.serenity-bdd:serenity-core:${serenityVersion}",
             "net.serenity-bdd:serenity-cucumber:${serenityVersion}",
@@ -33,7 +46,8 @@ dependencies {
             "net.serenity-bdd:serenity-ensure:${serenityVersion}",
             "org.assertj:assertj-core:${assertJVersion}",
             "org.slf4j:slf4j-simple:${slf4jVersion}",
-            "org.json:json:${jsonVersion}"
+            "org.json:json:${jsonVersion}",
+            "org.apache.maven.plugins:maven-surefire-plugin:3.5.3"
 }
 
 serenity {

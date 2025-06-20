@@ -1,0 +1,13 @@
+# node1.toml
+[server]
+port = 8301
+
+[node]
+detect-drivers = false
+
+[relay]
+url = "http://localhost:4733"
+status-endpoint = "/status"
+configs = [
+    "1", '{"browserName": "chrome", "platformName": "Android", "appium:platformVersion": "12.0", "appium:deviceName": "ANDROID12A", "appium:automationName": "UiAutomator2", "appium:udid": "emulator-5556", "appium:app": "C:/Users/Vasqu/IdeaProjects/MobileTestingDemo/src/test/resources/demoApp.apk", "appium:systemPort": 8201, "appium:autoGrantPermissions": true, "appium:enforceAppInstall": true, "appium:autoLaunch": true, "appium:forceAppLaunch": true}'
+]

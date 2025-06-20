@@ -1,90 +1,103 @@
 # Mobile Testing Demo
 
-## Consideraciones
+## Requirements
 
-Asegúrese de tener instalados los siguientes componentes:
-*las versiones utilizadas que se muestran son las recomendadas, si tiene versiones anteriores y presenta inconvenientes debera actualizarlas*
+Make sure you have the following components installed:
+*The versions shown are recommended. If you have older versions and encounter issues, please update them.*
 
 - Java (JDK) 21.0.2
 - Gradle 8.12
-- Node.js 22.12.0
-  - La version de Node.js deben ser las siguientes para evitar problemas de instalacion de appium 
-  - ^14.17.0 || ^16.13.0 || >=18.0.0
-  - LTS es recomendada
+- Node.js 22.12.0  
+  - Recommended Node.js versions: ^14.17.0 \|\| ^16.13.0 \|\| >=18.0.0 (LTS recommended)
 - Appium 2.15
 - Android Studio 2024.1.1 (Koala)
 
-## Instalacion de appium
-**Con node instalado**
-   
-1. npm install -g appium
-2. appium driver install uiautomator2
+## Appium Installation
 
-## Instalacion de Gradle, Android Studio
-    1. Gradle: Dirigirse al sitio oficial y seguir la guia de instalacion https://gradle.org/install/
+**With Node.js installed:**
+1. `npm install -g appium`
+2. `appium driver install uiautomator2`
 
-    2. Android Studio: Dirigirse a la pagina oficial y descargar el instalador y ejecutandolo posteriormente.
-    Asegurese de tener configurada la variable de entorno con la ruta correcta, normalmente es la siguiente
-    ANDROID_HOME -> C:\Users\*tu usuario*\AppData\Local\Android\Sdk 
-    https://developer.android.com/studio
-    
-## Instrucciones de Ejecución
+## Gradle and Android Studio Installation
 
-1. **Ejecutar Emulador**
+1. Gradle: Go to the official site and follow the installation guide: https://gradle.org/install/
+2. Android Studio: Download and install from https://developer.android.com/studio  
+   Make sure to set the environment variable:  
+   `ANDROID_HOME -> C:\Users\*your user*\AppData\Local\Android\Sdk`
 
-   Abra Android Studio y ejecute un emulador de Android desde el AVD Manager con la version de Android 15 (API 35).
-   ![alt text](image-5.png)
+## Execution Instructions
 
-2. **Iniciar Appium**
+### 1. Start Android Emulators
 
-   En una terminal, ejecute el siguiente comando para iniciar el servidor de Appium:
-   ```bash
-   appium
-   ```
-   ![alt text](image-2.png)
+Open Android Studio and start two Android emulators (e.g., `emulator-5554` and `emulator-5556`) from the AVD Manager with Android 15 (API 35).
 
-3. **Ejecutar Tests**
+### 2. Start Appium Servers
 
-   En otra terminal, navegue al directorio del proyecto y ejecute los tests con Gradle:
-   ```bash
-   gradle clean test --tests CompraProductoTest -i
-   ```
-![alt text](image-3.png)
+Open two terminals and run:
 
-## Reportes
+```sh
+    appium --port 4723 --base-path / --config grid/appium1.yml
+    appium --port 4733 --base-path / --config grid/appium2.yml
+```
 
-**Visualizar reporte generado**
+### 3. Start Selenium Grid Hub
 
-El proyecto generara un reporte por defecto con la cobertura de pruebas y capturas de pantalla de cada paso realizado.
+In a new terminal, run:
 
-Se podra acceder a el de manera manual al finalizar el test en el enlace que aparecera en consola.
-![alt text](image.png)
-Tambien se podra acceder a el desde la ruta (relativa al proyecto) siguiente:
+```sh
+    java -jar selenium-server-4.25.0.jar hub 
+```
 
-**/target/site/serenity/index.html**
+### 4. Register Grid Nodes
 
-lo cual nos mostrara en el navegador un reporte similar a este
-![alt text](image-1.png)
+In two separate terminals, register each node with its config:
 
+```sh
+    selenium-server node --config grid/node1.toml
+    selenium-server node --config grid/node2.toml
+```
+
+### 5. Verify Grid Status
+
+Go to `http://localhost:4444/ui` and check that both nodes are `UP`.
+
+### 6. Run Tests in Parallel
+
+From the project directory, run:
+
+```sh
+    ./gradlew parallelTests
+```
+
+Or, from IntelliJ IDEA, run the desired test suite or class.
+
+## Reports
+
+After the tests finish, a report will be generated.  
+Access it via the link shown in the console or at:
+
+`/target/site/serenity/index.html`
 
 ## Capabilities
 
-**Las capabilities implementadas son las siguientes:
+The implemented capabilities are:
 
-* webdriver.driver= appium
-
-* appium.hub = http://localhost:4723/
+- `webdriver.driver=appium`
+- `appium.hub = http://localhost:4444/` (or `/wd/hub` if required by your Appium version)
 
 ####### Android CAPABILITIES ######
-* appium.automationName=UiAutomator2
-* appium.platformName = Android
-* appium.platformVersion = 15.0
-* appium.deviceName  = Pixel8API35
-* appium.udid = emulator-5554
-* appium.app =  ${user.dir}/src/test/resources/demoApp.apk
-* appium.autoGrantPermissions = true
-* appium.disableIdLocatorAutocompletion = true
+- `appium.automationName=UiAutomator2`
+- `appium.platformName=Android`
+- `appium.platformVersion=15.0`
+- `appium.deviceName=Pixel8API35`
+- `appium.udid=emulator-5554`
+- `appium.app=${user.dir}/src/test/resources/demoApp.apk`
+- `appium.autoGrantPermissions=true`
+- `appium.disableIdLocatorAutocompletion=true`
 
-si se desean cambiar cualquier valor se debe realizar en el archivo serenity.properties 
-no se recomienda cambiar los valores de: appium.hub, appium.app (la app ya esta configurada en el proyecto) y appium.automationName
+To change any value, edit the `serenity.properties` file.  
+Do not change: `appium.hub`, `appium.app`, or `appium.automationName`.
 
+```
+
+This version includes all steps for parallel execution with Selenium Grid and multiple Appium servers.
