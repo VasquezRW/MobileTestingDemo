@@ -18,7 +18,7 @@ public class CustomAppiumDriver implements DriverSource {
 
         try {
             DesiredCapabilities caps = DeviceConfiguration.getCapabilities(profile);
-            URL serverURL = DeviceConfiguration.getAppiumServerURL(profile);
+            URL serverURL = DeviceConfiguration.getAppiumServerURL();
             return new AndroidDriver(serverURL, caps);
 //            return driver;
         } catch (MalformedURLException e) {

@@ -44,7 +44,7 @@ public class DeviceConfiguration {
         return caps;
     }
 
-    public static URL getAppiumServerURL(String profile) throws MalformedURLException {
+    public static URL getAppiumServerURL() throws MalformedURLException {
         return new URL("http://192.168.1.4:4444/");
     }
 }
