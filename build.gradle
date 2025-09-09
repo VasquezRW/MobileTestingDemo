@@ -51,8 +51,10 @@ dependencies {
 }
 
 serenity {
-    reports = ["single-page-html"]
-    requirementsDir = "src/test/resources/features"
+    requirementsDir = file("src/test/resources/features")
+    outputDirectory = file("$buildDir/site/serenity")
+//    projectName = "Mobile Testing Demo"
 }
 gradle.startParameter.continueOnFailure = true
 test.finalizedBy(aggregate)
+parallelTests.finalizedBy(aggregate)

@@ -3,7 +3,7 @@
 ## Requirements
 
 Make sure you have the following components installed:
-*The versions shown are recommended. If you have older versions and encounter issues, please update them.*
+*The versions shown are recommended. If you have older versions and encounter issues, please update them to the versions used in this project.*
 
 - Java (JDK) 21.0.2
 - Gradle 8.12
@@ -45,7 +45,7 @@ Open two terminals and run:
 In a new terminal, run:
 
 ```sh
-    java -jar selenium-server-4.25.0.jar hub 
+    java -jar grid/selenium-server-4.33.0.jar hub 
 ```
 
 ### 4. Register Grid Nodes
@@ -53,8 +53,8 @@ In a new terminal, run:
 In two separate terminals, register each node with its config:
 
 ```sh
-    selenium-server node --config grid/node1.toml
-    selenium-server node --config grid/node2.toml
+    java -jar grid/selenium-server-4.33.0.jar node --config grid/node1.toml
+    java -jar grid/selenium-server-4.33.0.jar node --config grid/node2.toml
 ```
 
 ### 5. Verify Grid Status
@@ -66,7 +66,8 @@ Go to `http://localhost:4444/ui` and check that both nodes are `UP`.
 From the project directory, run:
 
 ```sh
-    ./gradlew parallelTests
+    ./gradlew clean parallelTests -i
+    gradle clean parallelTests -i 
 ```
 
 Or, from IntelliJ IDEA, run the desired test suite or class.

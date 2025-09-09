@@ -45,10 +45,6 @@ public class DeviceConfiguration {
     }
 
     public static URL getAppiumServerURL(String profile) throws MalformedURLException {
-        switch (profile) {
-            case "device1": return new URL("http://192.168.1.4:4444/");
-            case "device2": return new URL("http://192.168.1.4:4444/");
-            default: throw new IllegalArgumentException("Servidor Appium no configurado para perfil: " + profile);
-        }
+        return new URL("http://192.168.1.4:4444/");
     }
 }
